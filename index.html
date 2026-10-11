@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/static/style.css"
+    </head>
+<body>
+    <h1>Electricity Bill Estimator</h1>
+    <p>Enter your monthly units to find out your bill</p>
+
+    <form action="/calculate" method="POST">
+        <label>Units Consumed:</label>
+        <input type="number" name="units" placeholder="example: 150" required>
+        <button type="submit">Calculate</button>
+    </form>
+    <div class="result">
+        <h2>Units Used: {{ units }} kWh</h2>
+        <h2>Total Bill: {{ units }}</h2>
+        <p>{{ message }}</p>
+    </div>
+</body>
+</html>
