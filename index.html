@@ -1,20 +1,59 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="/static/style.css"
-    </head>
-<body>
-    <h1>Electricity Bill Estimator</h1>
-    <p>Enter your monthly units to find out your bill</p>
 
-    <form action="/calculate" method="POST">
-        <label>Units Consumed:</label>
-        <input type="number" name="units" placeholder="example: 150" required>
-        <button type="submit">Calculate</button>
-    </form>
-    <div class="result">
-        <h2>Units Used: {{ units }} kWh</h2>
-        <h2>Total Bill: {{ units }}</h2>
-        <p>{{ message }}</p>
+<head>
+    <meta charset="UTF-8">
+    <title>Water Intake Tracker</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Water Intake Tracker</h1>
+
+        <p>
+            Enter your daily water goal and check whether you drank enough water today.
+        </p>
+
+        <form action="/track" method="POST">
+
+            <label>Your Name:</label>
+            <input type="text" name="name" placeholder="Enter your name" required>
+
+            <label>Daily Goal:</label>
+            <input type="number" name="goal" placeholder="Number of glasses" required>
+
+            <label>Glasses Drunk:</label>
+            <input type="number" name="glasses" placeholder="Glasses you drank" required>
+
+            <button type="submit">Check Water Intake</button>
+
+        </form>
+
+        {% if name %}
+        <div class="result">
+
+            <h2>Hello, {{ name }}!</h2>
+
+            <p><strong>Daily Goal:</strong> {{ goal }} glasses</p>
+            <p><strong>Glasses Drunk:</strong> {{ glasses }} glasses</p>
+            <p><strong>Status:</strong> {{ status }}</p>
+
+            {% if remaining > 0 %}
+            <p><strong>Remaining:</strong> {{ remaining }} more glasses to go.</p>
+            {% else %}
+            <p><strong>Remaining:</strong> 0 glasses. You completed your goal!</p>
+            {% endif %}
+
+            <h3>{{ message }}</h3>
+
+        </div>
+        {% endif %}
+
     </div>
+
 </body>
+
 </html>
